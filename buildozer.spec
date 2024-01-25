@@ -4,10 +4,10 @@
 title = Write To Kivy
 
 # (str) Package name
-package.name = KivyTest
+package.name = Temporary
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.YourName
+package.domain = org.makaroch
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -63,7 +63,7 @@ orientation = portrait
 # author = © Copyright Info
 
 # change the major version of python used by the app
-osx.python_version = 3
+osx.python_version = 3.11
 
 # Kivy version to use
 osx.kivy_version = 2.3.0
