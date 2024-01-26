@@ -7,7 +7,6 @@ from kivy.properties import StringProperty
 from kivymd.app import MDApp
 from kivymd.uix.navigationbar import MDNavigationBar, MDNavigationItem
 from kivymd.uix.boxlayout import MDBoxLayout
-# from kivymd.kivymd.uix.button import MDButton
 from kivymd.uix.screen import MDScreen
 
 KV = '''
@@ -197,7 +196,7 @@ MDBoxLayout:
                                 icon: "currency-rub"
 
                             MDTextFieldHelperText:
-                                text: "Минимальная цена, только цифры, дефолт 100р"
+                                text: "Минимальная цена, только цифры"
                                 mode: "on_focus"
 
                         MDTextField:
@@ -207,7 +206,7 @@ MDBoxLayout:
                                 icon: "currency-rub"
 
                             MDTextFieldHelperText:
-                                text: "Максимальная цена, только цифры, дефолт 10_000р"
+                                text: "Максимальная цена, только цифры"
                                 mode: "on_focus"
                     #кнопочка        
                     MDBoxLayout:
@@ -270,9 +269,6 @@ class Temporary(MDApp):
         self.sort = "popular"
         self.quantity = 5
 
-    def test(self):
-        print("!")
-
     def set_sort_popular(self):
         self.sort = "popular"
 
@@ -309,13 +305,8 @@ class Temporary(MDApp):
         one_product_url = (f"http://91.107.125.146:8080/get_product?search={self.query}&city={self.city}"
                            f"&sorting={self.sort}&delivery_time={self.days}&min_price={self.min_price}"
                            f"&max_prise={self.max_price}&quantity={self.quantity}")
-        many_products_url = "http://91.107.125.146:8080/wb_products"
 
-        if "," in self.query:
-            temp_lst = self.query.split(",")
-            response = ""
-        else:
-            response = requests.get(url=one_product_url)
+        response = requests.get(url=one_product_url)
 
         self.__generate_card(response.json())
 
@@ -323,7 +314,6 @@ class Temporary(MDApp):
     def __generate_card(self, data: list):
         self.is_search_running = False
         self.button.opacity = 1
-        """отрисовка карт товара"""
 
         async def generate_card():
             for item in data:
